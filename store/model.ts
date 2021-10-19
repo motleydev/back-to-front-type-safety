@@ -3,14 +3,7 @@
 import { action, thunk, computed } from "easy-peasy";
 import router from "next/router";
 import type { Action, Thunk, Computed } from "easy-peasy";
-import {
-  InputType,
-  GraphQLTypes,
-  ModelTypes,
-  Chain,
-  $,
-  Gql,
-} from "../utils/generated/zeus";
+import { ModelTypes, $ } from "../utils/generated/zeus";
 import { client } from "../utils/client";
 import { initializeApollo } from "../utils/apollo-client";
 
@@ -41,7 +34,7 @@ export interface Store {
  *  STORE MODEL
  * =====================
  */
-const apollo = initializeApollo();
+// const apollo = initializeApollo();
 export const model: Store = {
   // STATE - The data
   user: null,
@@ -70,8 +63,6 @@ export const model: Store = {
             { params: $`payload` },
             {
               name: true,
-              role: true,
-              avatar: true,
               id: true,
             },
           ],
@@ -101,8 +92,6 @@ export const model: Store = {
           { params: $`payload` },
           {
             name: true,
-            role: true,
-            avatar: true,
             id: true,
           },
         ],
