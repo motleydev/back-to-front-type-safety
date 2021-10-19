@@ -1,9 +1,43 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import React from "react";
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import {
+  useTypedQuery,
+  useTypedMutation,
+} from "../utils/generated/zeus/apollo";
+import styles from "../styles/Home.module.css";
+
+import { useStoreActions, useStoreState } from "../store";
+import { useMutation } from "@apollo/client";
 
 const Home: NextPage = () => {
+  const [name, setName] = React.useState("Fakey Zed");
+  const [email, setEmail] = React.useState("user-1@fake.zed");
+  const [password, setPassword] = React.useState("123");
+  const signup = useStoreActions((actions) => actions.signup);
+  const user = useStoreState((state) => state.user);
+  const isLoggedIn = useStoreState((state) => state.auth.isLoggedIn);
+
+  const handleSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    signup({
+      name,
+      email,
+      password,
+    });
+  };
+
+  const { data, error, loading } = useTypedQuery({
+    user: [
+      {},
+      {
+        name: true,
+      },
+    ],
+  });
+
   return (
     <div className={styles.container}>
       <Head>
@@ -17,39 +51,41 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        <section>
+          {!isLoggedIn && (
+            <form>
+              <input
+                value={name}
+                type="text"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+              <input
+                value={email}
+                type="text"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <input
+                value={password}
+                type="text"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <button onClick={handleSignup}>Signup</button>
+            </form>
+          )}
+          {isLoggedIn && <p>{user?.name}</p>}
+        </section>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <ul>
+            {data?.user &&
+              data.user.map((user, index) => <li key={index}>{user.name}</li>)}
+          </ul>
         </div>
       </main>
 
@@ -59,14 +95,14 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
