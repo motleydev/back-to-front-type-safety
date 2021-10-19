@@ -1,1 +1,0 @@
-web: cd frontend/full-example && npm start
