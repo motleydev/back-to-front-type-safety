@@ -1,9 +1,7 @@
 // @ts-nocheck
-
-import { getHasuraURL } from "./constants";
 import { Chain } from "./generated/zeus";
 
-export const client = Chain(getHasuraURL() + "/v1/graphql", {
+export const client = Chain(process.env.HASURA_ENDPOINT, {
   credentials: "include",
   mode: "cors",
   headers: (() =>
@@ -12,6 +10,6 @@ export const client = Chain(getHasuraURL() + "/v1/graphql", {
       : {})(),
 });
 
-export const openclient = Chain(getHasuraURL() + "/v1/graphql", {
+export const openclient = Chain(process.env.HASURA_ENDPOINT, {
   credentials: "include",
 });
