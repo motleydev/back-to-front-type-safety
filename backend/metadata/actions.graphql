@@ -1,0 +1,22 @@
+input SignupInput {
+  password: String!
+  name: String!
+  email: String!
+}
+
+input LoginInput {
+  password: String!
+  email: String!
+}
+
+type JWT {
+  id: Int!
+  token: String!
+  name: String!
+  email: String!
+}
+
+extend type Mutation {
+  login(input: LoginInput): JWT
+  signup(input: SignupInput): JWT
+}

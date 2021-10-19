@@ -1,0 +1,25 @@
+actions:
+- name: signup
+  definition:
+    kind: ""
+    handler: '{{ACTION_BASE_URL}}/api/actions/signup'
+    forward_client_headers: true
+    headers:
+    - value: application/json
+      name: Content-Type
+- name: login
+  definition:
+    kind: ""
+    handler: '{{ACTION_BASE_URL}}/api/actions/login'
+    forward_client_headers: true
+    headers:
+    - value: application/json
+      name: Content-Type
+custom_types:
+  enums: []
+  input_objects:
+  - name: SignupInput
+  - name: LoginInput
+  objects:
+  - name: JWT
+  scalars: []

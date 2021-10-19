@@ -1,0 +1,17 @@
+{
+    "json.schemas": [
+      {
+        "fileMatch": ["**/metadata.json"],
+        "url": "./MetadataExport.schema.json"
+      }
+    ],
+    "yaml.schemas": {
+      "./.hasura-metadata-lib/ActionsYAML.schema.json": "**/actions.yaml",
+      "./.hasura-metadata-lib/AllowListYAML.schema.json": "**/allow_list.yaml",
+      "./.hasura-metadata-lib/CronTriggerYAML.schema.json": "**/cron_triggers.yaml",
+      "./.hasura-metadata-lib/FunctionsYAML.schema.json": "**/functions.yaml",
+      "./.hasura-metadata-lib/QueryCollectionsYAML.schema.json": "**/query_collections.yaml",
+      "./.hasura-metadata-lib/RemoteSchemasYAML.schema.json": "**/remote_schemas.yaml",
+      "./.hasura-metadata-lib/TablesYAML.schema.json": "**/tables.yaml"
+    }
+  }

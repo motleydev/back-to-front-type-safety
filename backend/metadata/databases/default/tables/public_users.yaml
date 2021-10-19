@@ -1,0 +1,28 @@
+table:
+  name: users
+  schema: public
+update_permissions:
+  - role: user
+    permission:
+      check:
+        id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - name
+      - email
+      backend_only: false
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - id
+      - name
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      - email
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
