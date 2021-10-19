@@ -32,7 +32,7 @@ This step you might typically have your own database
 
 Fork this: https://github.com/motleydev/back-to-front-type-safety
 
-## Add Metadata
+### Add Metadata
 
 Add Github integration from Dashboard
 
@@ -113,8 +113,8 @@ type JWT {
 }
 ```
 
-**Handler**
-{{ACTION_BASE_URL}}/api/actions/login
+**Handler**  
+`{{ACTION_BASE_URL}}/api/actions/login`
 
 #### Add Signup action
 
@@ -140,8 +140,8 @@ input SignupInput {
 # JWT Type from above already exists as type declarations are global
 ```
 
-**Handler**
-{{ACTION_BASE_URL}}/api/actions/signup
+**Handler**  
+`{{ACTION_BASE_URL}}/api/actions/signup`
 
 #### Set Permissions
 
@@ -151,7 +151,7 @@ We'll set these to our `anonymous` user.
 
 ## Create a NextJS typescript project
 
-`npx create-next-app@latest --ts project-name`
+`npx create-next-app@latest --ts project-name`  
 Follow on the onscreen prompts.
 
 ## Install Dependencies
@@ -178,10 +178,10 @@ HASURA_JWT_SECRET_KEY=***
 
 Delete `/pages/api/hello.ts`
 
-These first two map to Hasura actions, so, for organization, we'll nest them in an actions folder. This is not required.
-`/pages/api/actions/signup.ts`
-`/pages/api/actions/login.ts`
-This is an API route we'll only call from this client application.
+These first two map to Hasura actions, so, for organization, we'll nest them in an actions folder. This is not required.  
+`/pages/api/actions/signup.ts`  
+`/pages/api/actions/login.ts`  
+This is an API route we'll only call from this client application.  
 `/pages/api/signout.ts`
 
 See example in the full-example
