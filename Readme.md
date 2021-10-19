@@ -220,4 +220,7 @@ yarn gql-sdk
 
 Inspect what was created, confirm our actions are not complaining any more.
 
-Let's deploy
+Deploy to Vercel
+Choose sub directory
+
+## Update console with URL
