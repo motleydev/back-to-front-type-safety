@@ -3,8 +3,8 @@
 import { action, thunk, computed } from "easy-peasy";
 import router from "next/router";
 import type { Action, Thunk, Computed } from "easy-peasy";
-import { ModelTypes, $ } from "../utils/generated/zeus";
-import { client } from "../utils/client";
+import { ModelTypes, $, Gql } from "../utils/generated/zeus";
+// import { client } from "../utils/client";
 import { initializeApollo } from "../utils/apollo-client";
 
 /**
@@ -57,21 +57,19 @@ export const model: Store = {
   signup: thunk(async (store, payload) => {
     try {
       store.setLogginError(false);
-      const result = await client.mutation(
+      const result = await Gql.mutation(
         {
           signup: [
-            { params: $`payload` },
+            { params: { ...payload } },
             {
               name: true,
+              email: true,
               id: true,
             },
           ],
         },
         {
           operationName: "SignupWebClient",
-          variables: {
-            payload,
-          },
         }
       );
 
