@@ -93,7 +93,7 @@ GraphQL Code:
 
 ```graphql
 type Mutation {
-  login(input: LoginInput!): JWT
+  login(params: LoginInput!): JWT
 }
 ```
 
@@ -124,7 +124,7 @@ GraphQL Code:
 
 ```graphql
 type Mutation {
-  signup(input: SignupInput!): JWT
+  signup(params: SignupInput!): JWT
 }
 ```
 
@@ -192,7 +192,7 @@ Add this line to package.json scripts section
 
 ```json
 {
-  "gql-sdk": "env-cmd -x zeus \\$ENDPOINT ./utils/generated --apollo --ts --header=x-hasura-admin-secret:\\$HASURA_ADMIN_SECRET"
+  "gql-sdk": "env-cmd -x zeus \\$HASURA_ENDPOINT ./utils/generated --apollo --ts --header=x-hasura-admin-secret:\\$HASURA_ADMIN_SECRET"
 }
 ```
 
