@@ -1,10 +1,19 @@
+## Set up the accounts!
+
+Hasura Cloud
+Heroku
+
 ## Create the Hasura Project
 
 ## Connect a database
 
 This step you might typically have your own database
 
-## Insert our tables
+## Connect our Github Repo
+
+Fork this: https://github.com/motleydev/back-to-front-type-safety
+
+## Insert our tables (If not added from above)
 
 This step is important that we know the shape of our user table. The specific namings are not important, but the consistent naming will need to be adapted throughout the entire code base if you have something different than what we are using here.
 
