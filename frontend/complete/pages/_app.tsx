@@ -1,7 +1,9 @@
 import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
+import { StoreProvider } from "easy-peasy";
 
 import { useApollo } from "../utils/apollo-client";
+import { store } from "../store";
 
 import "../styles/globals.css";
 
@@ -10,7 +12,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
-      <Component {...pageProps} />
+      <StoreProvider store={store}>
+        <Component {...pageProps} />
+      </StoreProvider>
     </ApolloProvider>
   );
 }
