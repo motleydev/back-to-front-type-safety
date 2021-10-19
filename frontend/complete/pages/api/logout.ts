@@ -1,6 +1,6 @@
 import nc from "next-connect";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { destroyCookie } from "../../../utils/cookies";
+import { destroyCookie } from "../../utils/cookies";
 
 const handler = nc<NextApiRequest, NextApiResponse>();
 
